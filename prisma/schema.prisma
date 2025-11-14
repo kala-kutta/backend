@@ -1,0 +1,23 @@
+generator client {
+  provider = "prisma-client"
+  output   = "./generated"
+  runtime  = "bun"
+}
+
+datasource db { 
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model User {
+  id       String @id
+  username String @unique
+  password String
+}
+
+model LoggedOnUser {
+  userId       String   @id
+  authToken    String   @unique
+  lastLoggedIn DateTime @default(now())
+}

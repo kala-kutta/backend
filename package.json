@@ -1,0 +1,41 @@
+{
+  "name": "backend",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "bun run index.ts",
+    "dev:fresh": "rm ./prisma/dev.db && bun run index.ts",
+    "lint": "bunx eslint .",
+    "format": "bunx eslint . --fix",
+    "test": "bunx jest"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.3.2",
+    "@types/express": "^5.0.5",
+    "@types/jest": "^30.0.0",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/ws": "^8.18.1",
+    "prisma": "^6.19.0",
+    "ts-jest": "^29.4.5"
+  },
+  "peerDependencies": {
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "@eslint/js": "^9.39.1",
+    "@paralleldrive/cuid2": "^3.0.4",
+    "@prisma/adapter-libsql": "^6.19.0",
+    "@prisma/client": "^6.19.0",
+    "argon2": "^0.44.0",
+    "dotenv": "^17.2.3",
+    "eslint": "^9.39.1",
+    "express": "^5.1.0",
+    "install": "^0.13.0",
+    "jest-mock-extended": "2.0.4",
+    "jsonwebtoken": "^9.0.2",
+    "ts-node": "^10.9.2",
+    "typescript-eslint": "^8.46.3",
+    "ws": "^8.18.3"
+  }
+}
