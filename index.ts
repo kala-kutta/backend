@@ -3,12 +3,19 @@ import express, { type NextFunction, type Request, type Response } from "express
 import restRouter from "./restrouter";
 import secrets from "./secrets";
 import { verify } from "jsonwebtoken";
-import { runWebsocketServer } from "./socketman";
+import prisma from "./prisma";
 
 const app = express();
 const port = secrets.restPortNumber;
 
 app.use(express.json());
+
+// Purge all connections on server restart
+await prisma.user.updateMany({
+    data: {
+        connections: []
+    }
+});
 
 app.get("/", (req: Request, res: Response) => {
     res.json({ message: "Anonymous Discord" });
@@ -76,8 +83,6 @@ app.use("/rest", (req: Request, res: Response, next: NextFunction) => {
 app.listen(port, () => {
     console.log(`The server is running at http://localhost:${port}`);
 });
-
-runWebsocketServer();
 
 
 function validateUsername(username: string) {
